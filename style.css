@@ -271,10 +271,8 @@ p {
   
   .skill__img {
 	float: left;
-	width: 25%;
-	padding: 10px;
-	
-	
+	width: 20%;
+	padding: 95px;
   }
   
   .skill__img img {
