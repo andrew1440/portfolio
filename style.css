@@ -284,11 +284,7 @@ p {
   .skill__img img:hover {
 	transform: scale(0.1);
   }
-  .work__container {
-    grid-auto-rows: 150px;
-    column-gap: 2rem;
-    padding-top: 2rem;
-  }
+  
 /* Projects section */
 #projects .projects {
 	flex-direction: column;
