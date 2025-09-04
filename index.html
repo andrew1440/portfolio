@@ -1,195 +1,323 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrew Odongo - Full Stack Developer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Header -->
-  <section id="header">
-    <div class="header container">
-      <div class="nav-bar">
-        <div class="brand">
-          <a href="#hero"><h1><span>A</span>ndrew <span>O</span>dongo</h1></a>
-        </div>
-        <div class="nav-list">
-          <div class="hamburger"><div class="bar"></div></div>
-          <ul>
-            <li><a href="#hero" data-after="Home">Home</a></li>
-            <li><a href="#projects" data-after="Projects">Projects</a></li>
-            <li><a href="#skills" data-after="Skills">Skills</a></li>
-            <li><a href="#about" data-after="About">About</a></li>
-            <li><a href="#contact" data-after="Contact">Contact</a></li>
-          </ul>
-        </div>
-      </div>
+    <!-- Loading Screen -->
+    <div class="loading">
+        <div class="loader"></div>
     </div>
-  </section>
-  <!-- End Header -->
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </button>
 
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h2>Andrew Odongo</h2>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
 
-  <!-- Hero Section  -->
-  <section id="hero">
-    <div class="hero container">
-      <div>
-        <h1>Hello, <span></span></h1>
-        <h1>My Name is <span></span></h1>
-        <h1>Andrew <span></span></h1>
-        <a href="#projects" type="button" class="cta">Portfolio</a>
-      </div>
-    </div>
-  </section>
-  <!-- End Hero Section  -->
-  <!-- Projects Section -->
-  <section id="projects">
-    <div class="projects container">
-      <div class="projects-header">
-        <h1 class="section-title">Latest <span>Projects</span></h1>
-      </div>
-      <div class="all-projects">
-        <div class="project-item">
-          <div class="project-info">
-            <h1>Project 1</h1>
-            <h2>hire me</h2>
-            <p>Is a platform where people can hire equipment,products and services at an affordable rate from any location for a period of time.</p>
-          </div>
-          <div class="project-img">
-            <img src="./img/CamScanner 06-29-2022 14.18_1.jpg" alt="img">
-          </div>
+    <!-- Home Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Hi, I'm <span class="highlight">Andrew Odongo</span>
+                </h1>
+                <h2 class="hero-subtitle">Full Stack Developer</h2>
+                <p class="hero-description">
+                    I create amazing web applications and bring ideas to life through code.
+                    Passionate about clean code, user experience, and innovative solutions.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="image-container">
+                    <img src="./img/20210505_172423.jpg" alt="Andrew Odongo">
+                </div>
+            </div>
         </div>
-        <div class="project-item">
-          <div class="project-info">
-            <h1>Project 2</h1>
-            <h2>github Search</h2>
-            <p>This is an application that contains repositories of the user and his/her followers. </p>
-          </div>
-          <div class="project-img">
-            <img src="./img/CamScanner 06-29-2022 14.18_2.jpg" alt="img">
-          </div>
+        <div class="scroll-indicator">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+            <span>Scroll Down</span>
         </div>
-        <div class="project-item">
-          <div class="project-info">
-            <h1>Project 3</h1>
-            <h2>Delani</h2>
-            <p>This project is a web application for Delani studio that shows details about the services it offers, has information about the studio, a portfolio section and a form that enables users to send their messages and concern to Delani studios.</p>
-          </div>
-          <div class="project-img">
-            <img src="./img/CamScanner 06-29-2022 17.06.jpg" alt="img">
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- End Projects Section -->
+    </section>
 
-  <!-- Skills Section -->
-  <section class="Skills section" id="skills">
-    <h2 class="section-title">Skills</h2>
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Get to know me better</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Passionate Developer & Problem Solver</h3>
+                    <p>
+                        I'm a software engineer with over 2 years of experience in full stack development.
+                        I specialize in creating robust web applications using modern technologies and best practices.
+                    </p>
+                    <p>
+                        My journey in tech started with a curiosity about how things work, and it has evolved
+                        into a passion for building solutions that make a difference. I love working with
+                        technologies like HTML, CSS, JavaScript, Python, and various frameworks.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <h4>2+</h4>
+                            <p>Years Experience</p>
+                        </div>
+                        <div class="stat">
+                            <h4>10+</h4>
+                            <p>Projects Completed</p>
+                        </div>
+                        <div class="stat">
+                            <h4>5+</h4>
+                            <p>Technologies</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="./img/20210505_172423.jpg" alt="Andrew Odongo">
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div class="skill__container">
-       
-        <div class="skill__img">
-            <img src="./img/HTML.png" alt="">
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Skills & Technologies</h2>
+                <p class="section-subtitle">What I work with</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-html5"></i>
+                    </div>
+                    <h3>HTML5</h3>
+                    <p>Semantic markup and accessibility</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-css3-alt"></i>
+                    </div>
+                    <h3>CSS3</h3>
+                    <p>Modern styling and animations</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-js-square"></i>
+                    </div>
+                    <h3>JavaScript</h3>
+                    <p>ES6+ and modern frameworks</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <h3>Python</h3>
+                    <p>Backend development and scripting</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-angular"></i>
+                    </div>
+                    <h3>Angular</h3>
+                    <p>Frontend framework expertise</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-node-js"></i>
+                    </div>
+                    <h3>Node.js</h3>
+                    <p>Server-side JavaScript</p>
+                </div>
+            </div>
         </div>
-        <div class="skill__img">
-            <img src="./img/CSS.png" alt="">
-        </div>
-        <div class="skill__img">
-          <img src="./img/JS.png" alt="">
-        </div>
-        <div class="skill__img">
-          <img src="./img/icons8-angularjs-48.png" alt="">
-        </div>
-        <div class="skill__img">
-          <img src="./img/icons8-python-48.png" alt="">
-        </div>
-        <div class="skill__img">
-            <img src="./img/Bootstrap.jpeg" alt="">
-        </div>
-        <div class="skill__img">
-            <img src="./img/flask.png" alt="">
-        </div>
-        <div class="skill__img">
-            <img src="./img/github.png" alt="">
-        </div>
-        <div class="skill__img">
-            <img src="./img/heroku.png" alt="">
-        </div><div class="skill__img">
-          <img src="./img/5-2-wordpress-logo-free-download-png(1).png" alt="">
-        </div>
-    </div>
-</section>
-<!-- End Skills Section -->
+    </section>
 
-  <!-- About Section -->
-  <section id="about">
-    <div class="about container">
-      <div class="col-left">
-        <div class="about-img">
-          <img src="./img/20210505_172423.jpg" alt="img">
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">Some of my recent work</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="./img/CamScanner 06-29-2022 14.18_1.jpg" alt="Hire Me Project">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Hire Me Platform</h3>
+                        <p>A platform where people can hire equipment, products and services at an affordable rate from any location.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="./img/CamScanner 06-29-2022 14.18_2.jpg" alt="GitHub Search">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>GitHub Search App</h3>
+                        <p>An application that contains repositories of the user and his/her followers with search functionality.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Angular</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">API</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="./img/CamScanner 06-29-2022 17.06.jpg" alt="Delani Studio">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Delani Studio</h3>
+                        <p>A web application for Delani studio showcasing services, portfolio, and contact functionality.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">Bootstrap</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="col-right">
-        <h1 class="section-title">About <span>me</span></h1>
-        <h2>Front End Developer</h2>
-        <p>My name is Andrew and I am a software engineer. I have been developing websites and applications for around 2years. Most of my experience lies in full stack development and linux .
-          I have worked with HTML/CSS, Javascript/NodeJS, Wordpress, Angular, and a little bit of C# and Python.</p>
-        <a href="#" class="cta">Download Resume</a>
-      </div>
-    </div>
-  </section>
-  <!-- End About Section -->
+    </section>
 
-  <!-- Contact Section -->
-  <section id="contact">
-    <div class="contact container">
-      <div><h1 class="section-title">Contact <span>info</span></h1></div>
-      <div class="contact-items">
-        <div class="contact-item">
-          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/phone.png"/></div>
-          <div class="contact-info">
-            <h1>Phone</h1>
-            <h2>+254 740 478 651</h2>
-          </div>
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Let's work together</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>drewodongo470@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Phone</h3>
+                            <p>+254 740 478 651</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Location</h3>
+                            <p>Nairobi, Kenya</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="contact-item">
-          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/new-post.png"/></div>
-          <div class="contact-info">
-            <h1>Email</h1>
-            <h2>drewodongo470@gmail.com</h2>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/map-marker.png"/></div>
-          <div class="contact-info">
-            <h1>Address</h1>
-            <h2>Nairobi, Kenya</h2>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- End Contact Section -->
+    </section>
 
-  <!-- Footer -->
-  <section id="footer">
-    <div class="footer container">
-      <div class="brand"><h1><span>A</span>ndrew <span>O</span>dongo</h1></div>
-      <div class="social-icon">
-        <div class="social-item">
-          <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/github.png"/></a>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Andrew Odongo</h3>
+                    <p>Full Stack Developer</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://github.com/andrew1440" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/andrew-odongo-9b529219b/" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="mailto:drewodongo470@gmail.com" class="social-link">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Andrew Odongo. All rights reserved.</p>
+            </div>
         </div>
-        <div class="social-item">
-          <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/linkedin.png"/>
-          </a>
-        </div>
-      </div>
-      <p>Copyright © 2022 Andrew. All rights reserved</p>
-    </div>
-  </section>
-  <!-- End Footer -->
-  <script src="./app.js"></script>
+    </footer>
+
+    <script src="./app.js"></script>
 </body>
 </html>
