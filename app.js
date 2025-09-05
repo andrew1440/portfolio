@@ -155,7 +155,10 @@ class AnimationManager {
 
         // Observe elements for animation
         const animateElements = document.querySelectorAll('.skill-card, .project-card, .contact-item, .stat');
-        animateElements.forEach(el => observer.observe(el));
+        animateElements.forEach((el, index) => {
+            el.style.animationDelay = `${index * 0.1}s`;
+            observer.observe(el);
+        });
     }
 
     initScrollAnimations() {
@@ -331,7 +334,7 @@ class ParticleBackground {
             // Draw particle
             this.ctx.beginPath();
             this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-            this.ctx.fillStyle = `rgba(99, 102, 241, ${particle.opacity})`;
+            this.ctx.fillStyle = `rgba(30, 58, 138, ${particle.opacity})`;
             this.ctx.fill();
         });
 
