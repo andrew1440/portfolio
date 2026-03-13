@@ -3,379 +3,559 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andrew Odongo - Full Stack Developer</title>
+    <title>Andrew Odongo — Nairobi's Digital Architect</title>
+    <meta name="description" content="Andrew Odongo — Full Stack Developer & AI Engineer based in Nairobi, Kenya. Building the future from the Silicon Savannah.">
     <link rel="stylesheet" href="style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loading">
-        <div class="loader"></div>
+
+    <!-- ═══ CUSTOM CURSOR ═══ -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- ═══ CANVAS PARTICLES ═══ -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- ═══ SPLASH / LOADER ═══ -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-inner">
+            <div class="splash-city">
+                <svg class="kicc-silhouette" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Simplified Nairobi skyline silhouette -->
+                    <rect x="20" y="180" width="30" height="120" fill="currentColor"/>
+                    <rect x="55" y="160" width="20" height="140" fill="currentColor"/>
+                    <rect x="80" y="130" width="35" height="170" fill="currentColor"/>
+                    <rect x="85" y="110" width="8" height="25" fill="currentColor"/>
+                    <rect x="120" y="150" width="25" height="150" fill="currentColor"/>
+                    <rect x="150" y="100" width="50" height="200" fill="currentColor"/>
+                    <rect x="168" y="70" width="12" height="35" fill="currentColor"/>
+                    <rect x="205" y="140" width="30" height="160" fill="currentColor"/>
+                    <rect x="240" y="160" width="40" height="140" fill="currentColor"/>
+                    <rect x="285" y="120" width="35" height="180" fill="currentColor"/>
+                    <rect x="325" y="170" width="25" height="130" fill="currentColor"/>
+                    <rect x="355" y="150" width="30" height="150" fill="currentColor"/>
+                    <!-- Ground -->
+                    <rect x="0" y="295" width="400" height="10" fill="currentColor"/>
+                </svg>
+            </div>
+            <div class="splash-content">
+                <p class="splash-location">📍 Nairobi, Kenya</p>
+                <h1 class="splash-title">Andrew<br><span>Odongo</span></h1>
+                <p class="splash-sub">Silicon Savannah Developer</p>
+                <div class="splash-loader">
+                    <div class="loader-bar">
+                        <div class="loader-fill" id="loaderFill"></div>
+                    </div>
+                    <span class="loader-pct" id="loaderPct">0%</span>
+                </div>
+                <button class="splash-btn" id="splashBtn" aria-label="Enter the portfolio">
+                    <span>ENTER NAIROBI</span>
+                    <div class="btn-glow"></div>
+                </button>
+            </div>
+        </div>
+        <div class="splash-overlay"></div>
     </div>
-    <!-- Theme Toggle -->
-    <button class="theme-toggle" id="theme-toggle">
-        <i class="fas fa-moon"></i>
-    </button>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <h2>Andrew Odongo</h2>
+    <!-- ═══ MAIN SITE ═══ -->
+    <div class="site-wrapper" id="siteWrapper">
+
+        <!-- ═══ NAVIGATION ═══ -->
+        <nav class="nav" id="mainNav">
+            <div class="nav-logo">
+                <span class="logo-icon">🌆</span>
+                <span class="logo-text">Andrew<span class="logo-dot">.dev</span></span>
             </div>
-            <div class="nav-menu">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#skills" class="nav-link">Skills</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#contact" class="nav-link">Contact</a>
+            <div class="nav-links" id="navLinks">
+                <a href="#about" class="nav-link" data-label="01">About</a>
+                <a href="#skills" class="nav-link" data-label="02">Skills</a>
+                <a href="#projects" class="nav-link" data-label="03">Works</a>
+                <a href="#contact" class="nav-link" data-label="04">Contact</a>
             </div>
-            <div class="nav-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+            <button class="burger" id="burgerBtn" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
+
+        <!-- ═══ FULL-SCREEN MENU OVERLAY ═══ -->
+        <div class="menu-overlay" id="menuOverlay">
+            <button class="menu-close" id="menuClose" aria-label="Close menu">✕</button>
+            <div class="menu-nav">
+                <a href="#hero" class="menu-item" data-idx="00">
+                    <span class="menu-icon">🏠</span>
+                    <span class="menu-label">Home</span>
+                </a>
+                <a href="#about" class="menu-item" data-idx="01">
+                    <span class="menu-icon">🌆</span>
+                    <span class="menu-label">About</span>
+                </a>
+                <a href="#skills" class="menu-item" data-idx="02">
+                    <span class="menu-icon">⚡</span>
+                    <span class="menu-label">Skills</span>
+                </a>
+                <a href="#projects" class="menu-item" data-idx="03">
+                    <span class="menu-icon">🚀</span>
+                    <span class="menu-label">Works</span>
+                </a>
+                <a href="#contact" class="menu-item" data-idx="04">
+                    <span class="menu-icon">📡</span>
+                    <span class="menu-label">Contact</span>
+                </a>
+            </div>
+            <div class="menu-footer">
+                <p>Built in the Silicon Savannah 🇰🇪</p>
             </div>
         </div>
-    </nav>
 
-    <!-- Home Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
+        <!-- ═══ SECTION 1: HERO ═══ -->
+        <section id="hero" class="section hero-section">
+            <div class="parallax-bg hero-bg" data-speed="0.4" style="background-image: url('img/nairobi_skyline.png')"></div>
+            <div class="hero-overlay"></div>
             <div class="hero-content">
-                <h1 class="hero-title">
-                    Hi, I'm <span class="highlight">Andrew Odongo</span>
+                <p class="hero-eyebrow reveal-text">Nairobi, Kenya — Silicon Savannah</p>
+                <h1 class="hero-name" id="heroName">
+                    <span class="name-line">Andrew</span>
+                    <span class="name-line accent">Odongo</span>
                 </h1>
-                <h2 class="hero-subtitle">Full Stack Developer</h2>
-                <p class="hero-description">
-                    I create amazing web applications and bring ideas to life through code.
-                    Passionate about clean code, user experience, and innovative solutions.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">View My Work</a>
-                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                <p class="hero-tagline" id="heroTagline"></p>
+                <div class="hero-cta">
+                    <a href="#projects" class="cta-btn primary">
+                        <span>View My Work</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#contact" class="cta-btn secondary">Let's Talk</a>
+                </div>
+                <div class="hero-scroll-hint">
+                    <div class="scroll-mouse">
+                        <div class="scroll-wheel"></div>
+                    </div>
+                    <span>Scroll to explore</span>
                 </div>
             </div>
-            <div class="hero-image">
-                <div class="image-container">
-                    <img src="./img/20210505_172423.jpg" alt="Andrew Odongo">
+            <!-- Floating stat chips -->
+            <div class="hero-stats">
+                <div class="stat-chip glass reveal-up">
+                    <span class="stat-num">6+</span>
+                    <span class="stat-lbl">Projects</span>
+                </div>
+                <div class="stat-chip glass reveal-up" style="--delay: 0.15s">
+                    <span class="stat-num">3+</span>
+                    <span class="stat-lbl">Years Coding</span>
+                </div>
+                <div class="stat-chip glass reveal-up" style="--delay: 0.3s">
+                    <span class="stat-num">∞</span>
+                    <span class="stat-lbl">Ideas</span>
                 </div>
             </div>
-        </div>
-        <div class="scroll-indicator">
-            <div class="scroll-mouse">
-                <div class="scroll-wheel"></div>
-            </div>
-            <span>Scroll Down</span>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">About Me</h2>
-                <p class="section-subtitle">Get to know me better</p>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Passionate Developer & Problem Solver</h3>
-                    <p>
-                        I'm a software engineer with over 2 years of experience in full stack development.
-                        I specialize in creating robust web applications using modern technologies and best practices.
-                    </p>
-                    <p>
-                        My journey in tech started with a curiosity about how things work, and it has evolved
-                        into a passion for building solutions that make a difference. I love working with
-                        technologies like HTML, CSS, JavaScript, Python, and various frameworks.
-                    </p>
-                    <div class="about-stats">
-                        <div class="stat">
-                            <h4>2+</h4>
-                            <p>Years Experience</p>
+        <!-- ═══ SECTION 2: ABOUT ═══ -->
+        <section id="about" class="section about-section">
+            <div class="parallax-bg about-bg" data-speed="0.3" style="background-image: url('img/nairobi_night.png')"></div>
+            <div class="section-overlay dark"></div>
+            <div class="section-inner">
+                <div class="section-header reveal-up">
+                    <span class="section-tag">Who I Am</span>
+                    <h2 class="section-title">Born in the City <br>of Hustle</h2>
+                </div>
+                <div class="about-grid">
+                    <div class="about-text reveal-left">
+                        <p class="about-lead">I'm a <strong>Full-Stack Developer & AI Engineer</strong> rooted in Nairobi — a city that never stops innovating.</p>
+                        <p>Just like Nairobi stands at the intersection of wilderness and world-class skyline, I build things at the intersection of creativity and technology — bridging human problems with smart, scalable software.</p>
+                        <p>From crafting AI-powered platforms to building civic tech for Kenya, I bring the relentless energy of the Silicon Savannah to every project I ship.</p>
+                        <div class="about-location glass">
+                            <div class="location-dot"></div>
+                            <span>Currently building from Nairobi, Kenya 🇰🇪</span>
                         </div>
-                        <div class="stat">
-                            <h4>15+</h4>
-                            <p>Projects Completed</p>
+                    </div>
+                    <div class="about-cards">
+                        <div class="about-card glass reveal-up" style="--delay:0.1s">
+                            <div class="card-icon">🏙️</div>
+                            <h3>Urban Vision</h3>
+                            <p>Like the skyline reshaping Nairobi's horizon, I architect digital experiences that redefine what's possible.</p>
                         </div>
-                        <div class="stat">
-                            <h4>5+</h4>
-                            <p>Technologies</p>
+                        <div class="about-card glass reveal-up" style="--delay:0.25s">
+                            <div class="card-icon">🦁</div>
+                            <h3>Wild Determination</h3>
+                            <p>Inspired by the National Park that sits at city's edge — raw, powerful, and relentless in pursuit of the goal.</p>
+                        </div>
+                        <div class="about-card glass reveal-up" style="--delay:0.4s">
+                            <div class="card-icon">🔥</div>
+                            <h3>Silicon Savannah Spirit</h3>
+                            <p>Nairobi is Africa's tech hub. I carry that startup fire — shipping fast, learning faster, building for impact.</p>
+                        </div>
+                        <div class="about-card glass reveal-up" style="--delay:0.55s">
+                            <div class="card-icon">🌍</div>
+                            <h3>Global Mindset</h3>
+                            <p>Building solutions from Kenya, for the world. Africa-first thinking with global-scale ambition.</p>
                         </div>
                     </div>
                 </div>
-                <div class="about-image">
-                    <img src="./img/20210505_172423.jpg" alt="Andrew Odongo">
-                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Skills & Technologies</h2>
-                <p class="section-subtitle">What I work with</p>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fab fa-html5"></i>
-                    </div>
-                    <h3>HTML5</h3>
-                    <p>Semantic markup and accessibility</p>
+        <!-- ═══ SECTION 3: SKILLS ═══ -->
+        <section id="skills" class="section skills-section">
+            <div class="section-inner">
+                <div class="section-header reveal-up">
+                    <span class="section-tag">My Arsenal</span>
+                    <h2 class="section-title">Technologies I<br>Command</h2>
                 </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fab fa-css3-alt"></i>
-                    </div>
-                    <h3>CSS3</h3>
-                    <p>Modern styling and animations</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fab fa-js-square"></i>
-                    </div>
-                    <h3>JavaScript</h3>
-                    <p>ES6+ and modern frameworks</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fab fa-python"></i>
-                    </div>
-                    <h3>Python</h3>
-                    <p>Backend development and scripting</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fab fa-angular"></i>
-                    </div>
-                    <h3>Angular</h3>
-                    <p>Frontend framework expertise</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fab fa-node-js"></i>
-                    </div>
-                    <h3>Node.js</h3>
-                    <p>Server-side JavaScript</p>
-                </div>
-            </div>
-        </div>
-    </section>
+                <div class="skills-grid">
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Featured Projects</h2>
-                <p class="section-subtitle">Some of my recent work</p>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                       <img src="./img/CamScanner 06-29-2022 14.18_1.jpg" alt="Hire Me Project">
-                       <div class="project-overlay">
-                           <div class="project-links">
-                               <a href="https://andrew1440.github.io/HIRE-ME/" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
-                               <a href="https://github.com/andrew1440/HIRE-ME" class="project-link" target="_blank"><i class="fab fa-github"></i></a>
-                           </div>
-                       </div>
-                   </div>
-                    <div class="project-content">
-                        <h3>Hire Me Platform</h3>
-                        <p>A platform where people can hire equipment, products and services at an affordable rate from any location.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">CSS</span>
-                            <span class="tech-tag">JavaScript</span>
+                    <div class="skill-panel glass reveal-up" style="--delay:0.05s">
+                        <div class="skill-panel-header">
+                            <span class="skill-panel-icon">✨</span>
+                            <h3>Frontend</h3>
+                        </div>
+                        <ul class="skill-list">
+                            <li class="skill-row">
+                                <span class="skill-name">React / Next.js</span>
+                                <div class="skill-track"><div class="skill-bar" data-pct="95"></div></div>
+                                <span class="skill-pct">95%</span>
+                            </li>
+                            <li class="skill-row">
+                                <span class="skill-name">Vue.js</span>
+                                <div class="skill-track"><div class="skill-bar" data-pct="90"></div></div>
+                                <span class="skill-pct">90%</span>
+                            </li>
+                            <li class="skill-row">
+                                <span class="skill-name">TypeScript</span>
+                                <div class="skill-track"><div class="skill-bar" data-pct="92"></div></div>
+                                <span class="skill-pct">92%</span>
+                            </li>
+                            <li class="skill-row">
+                                <span class="skill-name">CSS / Animation</span>
+                                <div class="skill-track"><div class="skill-bar" data-pct="93"></div></div>
+                                <span class="skill-pct">93%</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-panel glass reveal-up" style="--delay:0.15s">
+                        <div class="skill-panel-header">
+                            <span class="skill-panel-icon">⚙️</span>
+                            <h3>Backend</h3>
+                        </div>
+                        <ul class="skill-list">
+                            <li class="skill-row">
+                                <span class="skill-name">Node.js</span>
+                                <div class="skill-track"><div class="skill-bar" data-pct="94"></div></div>
+                                <span class="skill-pct">94%</span>
+                            </li>
+                            <li class="skill-row">
+                                <span class="skill-name">Python</span>
+                                <div class="skill-track"><div class="skill-bar" data-pct="93"></div></div>
+                                <span class="skill-pct">93%</span>
+                            </li>
+                            <li class="skill-row">
+                                <span class="skill-name">Databases</span>
+                                <div class="skill-track"><div class="skill-bar" data-pct="91"></div></div>
+                                <span class="skill-pct">91%</span>
+                            </li>
+                            <li class="skill-row">
+                                <span class="skill-name">DevOps / Cloud</span>
+                                <div class="skill-track"><div class="skill-bar" data-pct="85"></div></div>
+                                <span class="skill-pct">85%</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-panel glass reveal-up" style="--delay:0.25s">
+                        <div class="skill-panel-header">
+                            <span class="skill-panel-icon">🤖</span>
+                            <h3>AI & ML</h3>
+                        </div>
+                        <ul class="skill-list">
+                            <li class="skill-row">
+                                <span class="skill-name">Machine Learning</span>
+                                <div class="skill-track"><div class="skill-bar" data-pct="88"></div></div>
+                                <span class="skill-pct">88%</span>
+                            </li>
+                            <li class="skill-row">
+                                <span class="skill-name">NLP</span>
+                                <div class="skill-track"><div class="skill-bar" data-pct="86"></div></div>
+                                <span class="skill-pct">86%</span>
+                            </li>
+                            <li class="skill-row">
+                                <span class="skill-name">Data Science</span>
+                                <div class="skill-track"><div class="skill-bar" data-pct="87"></div></div>
+                                <span class="skill-pct">87%</span>
+                            </li>
+                            <li class="skill-row">
+                                <span class="skill-name">LLM Integration</span>
+                                <div class="skill-track"><div class="skill-bar" data-pct="90"></div></div>
+                                <span class="skill-pct">90%</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!-- Tech orbit cloud -->
+                <div class="tech-orbit-wrapper reveal-up" style="--delay:0.4s">
+                    <div class="tech-orbit">
+                        <div class="orbit-center">
+                            <img src="img/nairobi_skyline.png" alt="Nairobi" class="orbit-img">
+                            <span>Nairobi</span>
+                        </div>
+                        <div class="orbit-ring ring-1">
+                            <div class="orbit-tag" style="--angle:0deg"><span>React</span></div>
+                            <div class="orbit-tag" style="--angle:120deg"><span>Python</span></div>
+                            <div class="orbit-tag" style="--angle:240deg"><span>Node.js</span></div>
+                        </div>
+                        <div class="orbit-ring ring-2">
+                            <div class="orbit-tag" style="--angle:60deg"><span>AI/ML</span></div>
+                            <div class="orbit-tag" style="--angle:180deg"><span>TypeScript</span></div>
+                            <div class="orbit-tag" style="--angle:300deg"><span>DevOps</span></div>
                         </div>
                     </div>
                 </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="./img/work3.jpg" alt="KICO">
-                        <div class="project-overlay">
+            </div>
+        </section>
+
+        <!-- ═══ SECTION 4: PROJECTS ═══ -->
+        <section id="projects" class="section projects-section">
+            <div class="parallax-bg projects-bg" data-speed="0.3" style="background-image: url('img/nairobi_savannah.png')"></div>
+            <div class="section-overlay"></div>
+            <div class="section-inner">
+                <div class="section-header reveal-up">
+                    <span class="section-tag">My Work</span>
+                    <h2 class="section-title">Digital Creations<br>from the Savannah</h2>
+                </div>
+                <div class="projects-grid">
+
+                    <div class="project-card glass tilt-card reveal-up" style="--delay:0.05s">
+                        <div class="project-img" style="background: linear-gradient(135deg, #1a0533 0%, #3d1560 40%, #6d28d9 100%);">
+                            <div class="project-img-overlay">
+                                <span class="project-badge featured">Featured</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span class="project-tech-tag">TypeScript</span>
+                                <span class="project-tech-tag">React</span>
+                                <span class="project-tech-tag">Claude AI</span>
+                            </div>
+                            <h3 class="project-title">🎨 UIGEN</h3>
+                            <p class="project-desc">AI-powered React component generator that transforms natural language into beautiful, production-ready components with live preview.</p>
                             <div class="project-links">
-                                <a href="https://kico-fw40kjv47-andreas-projects-0dbd97ea.vercel.app/" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
-                                <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                                <a href="https://github.com/andrew1440/UIGEN" target="_blank" class="project-link-btn">
+                                    <i class="fab fa-github"></i> Code
+                                </a>
+                                <a href="https://github.com/andrew1440/UIGEN" target="_blank" class="project-link-btn secondary">
+                                    Live Demo <i class="fas fa-external-link-alt"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
-                    <div class="project-content">
-                        <h3>KICO</h3>
-                        <p>A cutting-edge e-commerce platform built with Next.js 15, featuring a modern design inspired by leading fashion retailers like Shein. Built with React 19 and TypeScript for optimal performance and user experience.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Next.js</span>
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">TypeScript</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="./img/img-1.png" alt="Naree">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-                                <a href="#" class="project-link"><i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Naree</h3>
-                        <p>An advanced AI-powered search engine that provides intelligent answers with real-time web search capabilities. Built with Next.js 15, React 19, and powered by Groq AI and SerpAPI.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Next.js</span>
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">AI</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="./img/work3.jpg" alt="News Highlight App">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://sweetnews.herokuapp.com/" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
-                                <a href="https://github.com/andrew1440/NewsHighlight2" class="project-link" target="_blank"><i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>News Highlight App</h3>
-                        <p>A web application that displays a list of news sources from around the world. Users can click on a news source to view abbreviated versions of articles and redirect to the full article.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Flask</span>
-                            <span class="tech-tag">Bootstrap</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="./img/img-1.png" alt="AI Health Assistant">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/andrew1440/ai-health-assistant" class="project-link" target="_blank"><i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>AI Health Assistant</h3>
-                        <p>An AI-powered health assistant application that provides personalized health recommendations, symptom analysis, and wellness tracking using machine learning algorithms.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">AI</span>
-                            <span class="tech-tag">Machine Learning</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="./img/work3.jpg" alt="Cybersecurity AI Agents">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/andrew1440/cybersecurity-ai-agents" class="project-link" target="_blank"><i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Cybersecurity AI Agents</h3>
-                        <p>A project focused on developing AI-powered agents for cybersecurity tasks, enhancing threat detection and response.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">AI</span>
-                            <span class="tech-tag">Machine Learning</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Get In Touch</h2>
-                <p class="section-subtitle">Let's work together</p>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
+                    <div class="project-card glass tilt-card reveal-up" style="--delay:0.15s">
+                        <div class="project-img" style="background-image: url('img/project_ai_search.png'); background-size:cover; background-position:center">
+                            <div class="project-img-overlay">
+                                <span class="project-badge">MIT License</span>
+                            </div>
                         </div>
-                        <div class="contact-details">
-                            <h3>Email</h3>
-                            <p>drewodongo470@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Phone</h3>
-                            <p>+254 740 478 651</p>
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span class="project-tech-tag">TypeScript</span>
+                                <span class="project-tech-tag">Advanced Search</span>
+                            </div>
+                            <h3 class="project-title">🔍 Naree</h3>
+                            <p class="project-desc">State-of-the-art intelligent research and search platform combining multi-source real-time search with advanced synthesis capabilities.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/andrew1440/Naree" target="_blank" class="project-link-btn">
+                                    <i class="fab fa-github"></i> Code
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Location</h3>
-                            <p>Nairobi, Kenya</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <form>
-                        <div class="form-group">
-                            <input type="text" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea placeholder="Your Message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
+                    <div class="project-card glass tilt-card reveal-up" style="--delay:0.25s">
+                        <div class="project-img" style="background-image: url('img/project_chatbot.png'); background-size:cover; background-position:center">
+                            <div class="project-img-overlay">
+                                <span class="project-badge">AI/ML</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span class="project-tech-tag">NLP</span>
+                                <span class="project-tech-tag">Automation</span>
+                            </div>
+                            <h3 class="project-title">🤖 Smart Support Bot</h3>
+                            <p class="project-desc">Intelligent chatbot system leveraging NLP and machine learning to provide automated, context-aware customer support solutions at scale.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/andrew1440/Smart-Customer-Support-Bot" target="_blank" class="project-link-btn">
+                                    <i class="fab fa-github"></i> Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card glass tilt-card reveal-up" style="--delay:0.35s">
+                        <div class="project-img" style="background: linear-gradient(135deg, #1a1a0a 0%, #3d2800 40%, #FF6B1A 100%);">
+                            <div class="project-img-overlay">
+                                <span class="project-badge">Impact</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span class="project-tech-tag">Python</span>
+                                <span class="project-tech-tag">REST APIs</span>
+                            </div>
+                            <h3 class="project-title">📰 NewsHighlight2</h3>
+                            <p class="project-desc">News aggregator displaying stories from multiple global sources. Users explore diverse perspectives and stay informed on world events.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/andrew1440/NewsHighlight2" target="_blank" class="project-link-btn">
+                                    <i class="fab fa-github"></i> Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card glass tilt-card reveal-up" style="--delay:0.45s">
+                        <div class="project-img" style="background: linear-gradient(135deg, #0d2818 0%, #1a5c36 50%, #FFB830 100%);">
+                            <div class="project-img-overlay">
+                                <span class="project-badge">Creative</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span class="project-tech-tag">E-Commerce</span>
+                                <span class="project-tech-tag">African Design</span>
+                            </div>
+                            <h3 class="project-title">🎭 Joshskitenge</h3>
+                            <p class="project-desc">E-commerce platform celebrating vibrant Kitenge/Ankara African fabrics — connecting artisans with global audiences authentically.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/andrew1440/Joshskitenge" target="_blank" class="project-link-btn">
+                                    <i class="fab fa-github"></i> Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card glass tilt-card reveal-up" style="--delay:0.55s">
+                        <div class="project-img" style="background: linear-gradient(135deg, #0a1a00 0%, #006600 45%, #cc0000 75%, #000000 100%);">
+                            <div class="project-img-overlay">
+                                <span class="project-badge kenya">🇰🇪 Kenya</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span class="project-tech-tag">AI/ML</span>
+                                <span class="project-tech-tag">Civic Tech</span>
+                            </div>
+                            <h3 class="project-title">🏛️ AI Civic Platform</h3>
+                            <p class="project-desc">AI-powered governance transparency and civic engagement platform for Kenya — empowering communities through accessible public data.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/andrew1440/AI-enabled-Civic-Engagement-and-Governance-Transparency-Platform" target="_blank" class="project-link-btn">
+                                    <i class="fab fa-github"></i> Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ SECTION 5: CONTACT ═══ -->
+        <section id="contact" class="section contact-section">
+            <div class="parallax-bg contact-bg" data-speed="0.25" style="background-image: url('img/nairobi_maasai.png')"></div>
+            <div class="section-overlay dark heavy"></div>
+            <div class="section-inner">
+                <div class="section-header reveal-up">
+                    <span class="section-tag">Get In Touch</span>
+                    <h2 class="section-title">Let's Build<br>Something Great</h2>
+                    <p class="section-sub">Open to collaborations, opportunities, and conversations.<br>The Nairobi hustle never stops — neither do I.</p>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-form-wrap glass reveal-left">
+                        <h3>Send a Message</h3>
+                        <form id="contactForm" class="contact-form">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" placeholder="e.g. Amina Wanjiku" required>
+                                <span class="input-border"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" placeholder="you@example.com" required>
+                                <span class="input-border"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" rows="5" placeholder="Let's talk about..." required></textarea>
+                                <span class="input-border"></span>
+                            </div>
+                            <button type="submit" class="form-submit">
+                                <span>Send Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="contact-info reveal-right">
+                        <div class="contact-info-card glass">
+                            <div class="contact-detail">
+                                <div class="contact-detail-icon">📍</div>
+                                <div>
+                                    <strong>Location</strong>
+                                    <span>Nairobi, Kenya</span>
+                                </div>
+                            </div>
+                            <div class="contact-detail">
+                                <div class="contact-detail-icon">📧</div>
+                                <div>
+                                    <strong>Email</strong>
+                                    <span>hello@andrew.dev</span>
+                                </div>
+                            </div>
+                            <div class="contact-detail">
+                                <div class="contact-detail-icon">💬</div>
+                                <div>
+                                    <strong>Status</strong>
+                                    <span class="available">● Available for work</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="socials">
+                            <a href="https://github.com/andrew1440" target="_blank" class="social-btn glass" title="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="social-btn glass" title="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="social-btn glass" title="Twitter / X">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-btn glass" title="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                        <div class="contact-quote glass">
+                            <p>"Nairobi yetu, silicon savannah — where code meets culture."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ FOOTER ═══ -->
+        <footer class="footer">
+            <div class="footer-inner">
                 <div class="footer-brand">
-                    <h3>Andrew Odongo</h3>
-                    <p>Full Stack Developer</p>
+                    <span class="logo-icon">🌆</span>
+                    <span>Andrew<span class="accent-text">.dev</span></span>
                 </div>
-                <div class="footer-social">
-                    <a href="https://github.com/andrew1440" class="social-link">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/andrew-odongo-9b529219b/" class="social-link">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="mailto:drewodongo470@gmail.com" class="social-link">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
+                <p class="footer-copy">Crafted with <span class="heart">❤️</span> in Nairobi, Kenya &nbsp;|&nbsp; © 2025 Andrew Odongo</p>
+                <div class="footer-flag">🇰🇪</div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Andrew Odongo. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+        </footer>
 
-    <script src="./app.js"></script>
+    </div><!-- /site-wrapper -->
+
+    <script src="app.js"></script>
 </body>
 </html>
