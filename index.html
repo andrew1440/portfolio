@@ -1,537 +1,381 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andrew Odongo - Nairobi's Digital Explorer</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <title>Andrew Odongo — Nairobi's Digital Explorer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
+
 <body>
-    <!-- Loading Screen with Anime Effect -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loader-anime">
-            <div class="orbit"></div>
-            <div class="orbit"></div>
-            <div class="orbit"></div>
-            <div class="center-dot"></div>
-        </div>
-        <p class="loading-text">Welcome to Nairobi</p>
+  <!-- Loading Screen -->
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loader-anime">
+      <div class="orbit"></div>
+      <div class="center-dot"></div>
     </div>
+    <p class="loading-text">Welcome to Nairobi</p>
+  </div>
 
-    <!-- Animated Background -->
-    <div class="animated-bg">
-        <div class="gradient-orb orb-1"></div>
-        <div class="gradient-orb orb-2"></div>
-        <div class="gradient-orb orb-3"></div>
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor">
+    <div class="cursor__dot"></div>
+    <div class="cursor__ring"></div>
+  </div>
+
+  <!-- Animated Background -->
+  <div class="animated-bg">
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    <div class="gradient-orb orb-3"></div>
+  </div>
+
+  <!-- Top nav -->
+  <header class="site-header site-header--glass glass">
+    <div class="container header__inner">
+      <div class="brand btn-magnetic">
+        <span class="brand__mark">AO</span>
+        <span class="brand__text">Nairobi's Digital Explorer</span>
+      </div>
+      <nav class="nav">
+        <a href="#intro" class="nav__link btn-magnetic">Intro</a>
+        <a href="#about" class="nav__link btn-magnetic">About</a>
+        <a href="#stack" class="nav__link btn-magnetic">Stack</a>
+        <a href="#projects" class="nav__link btn-magnetic">Projects</a>
+        <a href="#pulse" class="nav__link btn-magnetic">Pulse</a>
+        <a href="#contact" class="nav__link btn-magnetic">Contact</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- Navigation -->
-    <nav class="navbar glass">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <span class="brand-icon">🌆</span>
-                <h2>Andrew.dev</h2>
-            </div>
-            <div class="nav-menu">
-                <a href="#journey" class="nav-link">Journey</a>
-                <a href="#landmarks" class="nav-link">Landmarks</a>
-                <a href="#culture" class="nav-link">Culture</a>
-                <a href="#portfolio" class="nav-link">Works</a>
-                <a href="#contact" class="nav-link">Connect</a>
-            </div>
-            <button class="nav-toggle" id="navToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+  <main>
+    <!-- Intro / hero “scene” -->
+    <section id="intro" class="section section--intro">
+      <div class="container intro__grid">
+        <div class="intro__copy">
+          <p class="eyebrow" data-gsap="reveal">Silicon Savannah</p>
+          <h1 class="intro__title" data-gsap="reveal">
+            Andrew<br />
+            <span class="intro__title--alt">Odongo</span>
+          </h1>
+          <p class="intro__subtitle" data-gsap="reveal">
+            Full‑stack engineer building AI‑native products, sports ecosystems, and civic tools rooted in Nairobi’s
+            energy.
+          </p>
+          <div class="intro__actions" data-gsap="reveal">
+            <a href="#projects" class="btn btn--primary btn-magnetic">View selected work</a>
+            <a href="#pulse" class="btn btn--ghost btn-magnetic">See my pulse</a>
+          </div>
         </div>
-    </nav>
-
-    <!-- Hero Section: City Entrance -->
-    <section class="hero-section" style="background-image: url('https://images.unsplash.com/photo-1596005554384-d293674c91d7?ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&w=1200&q=80'); background-size: cover; background-position: center; background-attachment: fixed;">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <div class="anime-intro">
-                <div class="intro-character">🌟</div>
-            </div>
-            <h1 class="hero-title">
-                <div class="landmarks-grid">
-                    <!-- Landmark 1 -->
-                    <div class="landmark-card glass" style="background-image: url('https://images.unsplash.com/photo-1611144727915-ef30a08aaeb3?ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&w=1200&q=80'); background-size: cover; background-position: center;">
-                        <div class="landmark-header">
-                            <div class="landmark-icon"></div>
-                            <h3>Nairobi's Skyline</h3>
-                        </div>
-                        <p>Modern skyscrapers like Britam Tower and Times Tower represent Kenya's architectural evolution. Each line of code, like each brick laid, builds the future.</p>
-                        <div class="landmark-stats">
-                            <div class="stat">
-                                <span class="stat-value">80+</span>
-                                <span class="stat-label">High-rises</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-value">2,200m</span>
-                                <span class="stat-label">Highest Point</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Landmark 2 -->
-                    <div class="landmark-card glass" style="background-image: url('https://images.unsplash.com/photo-1585523658894-cc78fc2c867?ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&w=1200&q=80'); background-size: cover; background-position: center;">
-                        <div class="landmark-header">
-                            <div class="landmark-icon">🏛️</div>
-                            <h3>Cultural Heritage</h3>
-                        </div>
-                        <p>From Karen Blixen Museum to the Nairobi National Museum, history and modernity coexist. Infrastructure meets artistry in perfect harmony.</p>
-                        <div class="landmark-stats">
-                            <div class="stat">
-                                <span class="stat-value">24</span>
-                                <span class="stat-label">Museums</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-value">100+</span>
-                                <span class="stat-label">Years Heritage</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Landmark 3 -->
-                    <div class="landmark-card glass" style="background-image: url('https://images.unsplash.com/photo-1635595358293-03620e36be48?ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&w=1200&q=80'); background-size: cover; background-position: center;">
-                        <div class="landmark-header">
-                            <div class="landmark-icon">🌳</div>
-                            <h3>Nairobi National Park</h3>
-                        </div>
-                        <p>30 square kilometers of untamed wilderness within the city. A sanctuary where nature thrives against urban expansion - a reminder to code responsibly.</p>
-                        <div class="landmark-stats">
-                            <div class="stat">
-                                <span class="stat-value">100+</span>
-                                <span class="stat-label">Species</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-value">4,800+</span>
-                                <span class="stat-label">Acres</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Landmark 4 -->
-                    <div class="landmark-card glass" style="background-image: url('https://images.unsplash.com/photo-1595428774223-ef52624120d2?ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&w=1200&q=80'); background-size: cover; background-position: center;">
-                        <div class="landmark-header">
-                            <div class="landmark-icon">🎨</div>
-                            <h3>Street Art Scene</h3>
-                        </div>
-                        <p>Vibrant murals in Nairobi's streets tell stories of creativity and rebellion. Every color represents an idea, every stroke a line of code visualized.</p>
-                        <div class="landmark-stats">
-                            <div class="stat">
-                                <span class="stat-value">500+</span>
-                                <span class="stat-label">Murals</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-value">∞</span>
-                                <span class="stat-label">Possibility</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-    <section id="landmarks" class="landmarks-section">
-        <h2 class="section-title">Architectural Marvels</h2>
-        <p class="section-subtitle">Built with Vision, Coded with Passion</p>
-
-        <div class="landmarks-grid">
-            <!-- Landmark 1 -->
-            <div class="landmark-card glass">
-                <div class="landmark-header">
-                    <div class="landmark-icon"></div>
-                    <h3>Nairobi's Skyline</h3>
-                </div>
-                <p>Modern skyscrapers like Britam Tower and Times Tower represent Kenya's architectural evolution. Each line of code, like each brick laid, builds the future.</p>
-                <div class="landmark-stats">
-                    <div class="stat">
-                        <span class="stat-value">80+</span>
-                        <span class="stat-label">High-rises</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value">2,200m</span>
-                        <span class="stat-label">Highest Point</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Landmark 2 -->
-            <div class="landmark-card glass">
-                <div class="landmark-header">
-                    <div class="landmark-icon"></div>
-                    <h3>Cultural Heritage</h3>
-                </div>
-                <p>From Karen Blixen Museum to the Nairobi National Museum, history and modernity coexist. Infrastructure meets artistry in perfect harmony.</p>
-                <div class="landmark-stats">
-                    <div class="stat">
-                        <span class="stat-value">24</span>
-                        <span class="stat-label">Museums</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value">100+</span>
-                        <span class="stat-label">Years Heritage</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Landmark 3 -->
-            <div class="landmark-card glass">
-                <div class="landmark-header">
-                    <div class="landmark-icon"></div>
-                    <h3>Nairobi National Park</h3>
-                </div>
-                <p>30 square kilometers of untamed wilderness within the city. A sanctuary where nature thrives against urban expansion - a reminder to code responsibly.</p>
-                <div class="landmark-stats">
-                    <div class="stat">
-                        <span class="stat-value">100+</span>
-                        <span class="stat-label">Species</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value">4,800+</span>
-                        <span class="stat-label">Acres</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Landmark 4 -->
-            <div class="landmark-card glass">
-                <div class="landmark-header">
-                    <div class="landmark-icon"></div>
-                    <h3>Street Art Scene</h3>
-                </div>
-                <p>Vibrant murals in Nairobi's streets tell stories of creativity and rebellion. Every color represents an idea, every stroke a line of code visualized.</p>
-                <div class="landmark-stats">
-                    <div class="stat">
-                        <span class="stat-value">500+</span>
-                        <span class="stat-label">Murals</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value">∞</span>
-                        <span class="stat-label">Possibility</span>
-                    </div>
-                </div>
-            </div>
+        <div class="intro__meta" data-gsap="reveal">
+          <div class="meta-card glass">
+            <span class="meta-label">Based in</span>
+            <span class="meta-value">Nairobi, Kenya</span>
+          </div>
+          <div class="meta-card glass">
+            <span class="meta-label">Focus</span>
+            <span class="meta-value">AI products · Youth · Sports</span>
+          </div>
+          <div class="meta-card glass">
+            <span class="meta-label">Available</span>
+            <span class="meta-status">
+              <span class="meta-dot"></span>
+              <span class="meta-value">New projects & roles</span>
+            </span>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Culture Section: The Anime Spirit -->
-    <section id="culture" class="culture-section">
-        <h2 class="section-title">Nairobi's Soul × Anime Spirit</h2>
-        
-        <div class="culture-container">
-            <div class="culture-grid">
-                <div class="culture-card glass anime-showcase">
-                    <div class="culture-emoji"></div>
-                    <h3>The Flow State</h3>
-                    <p>"In the zone" - Like anime heroes entering their power state, developers find their flow coding Nairobi's digital landscape.</p>
-                    <div class="anime-bar"></div>
-                </div>
-
-                <div class="culture-card glass anime-showcase">
-                    <div class="culture-emoji"></div>
-                    <h3>The Hustle Spirit</h3>
-                    <p>Nairobi's entrepreneurial fire burns bright. Every startup founder has that anime protagonist energy - unstoppable and visionary.</p>
-                    <div class="anime-bar"></div>
-                </div>
-
-                <div class="culture-card glass anime-showcase">
-                    <div class="culture-emoji"></div>
-                    <h3>The Network Effect</h3>
-                    <p>Tech communities pulse with energy. Collaborations spark like anime power-ups, creating exponential growth and innovation.</p>
-                    <div class="anime-bar"></div>
-                </div>
-
-                <div class="culture-card glass anime-showcase">
-                    <div class="culture-emoji"></div>
-                    <h3>The Cultural Blend</h3>
-                    <p>Swahili traditions meet futuristic aspirations. Nairobi is a living anime opening - past, present, and future converging.</p>
-                    <div class="anime-bar"></div>
-                </div>
-            </div>
-
-            <div class="culture-feature glass">
-                <h3>The Developer's Code of Nairobi</h3>
-                <div class="code-of-conduct">
-                    <div class="conduct-item">
-                        <span class="condition">if</span> (challenge === 'impossible') { <span class="return">embrace_it</span>(); }
-                    </div>
-                    <div class="conduct-item">
-                        <span class="condition">while</span> (innovation) { <span class="return">keep_coding</span>(); }
-                    </div>
-                    <div class="conduct-item">
-                        <span class="condition">for</span> (let idea of startup_dreams) { <span class="return">ship_it</span>(); }
-                    </div>
-                </div>
-            </div>
+    <!-- About / Now -->
+    <section id="about" class="section section--about">
+      <div class="container about__grid">
+        <div class="about__copy" data-gsap="reveal">
+          <p class="eyebrow">About</p>
+          <h2 class="section__title">Builder in Nairobi’s AI & sports lanes</h2>
+          <p>
+            I’m a full‑stack engineer and community builder using AI to power youth opportunity, sports ecosystems,
+            and civic tools across Nairobi. I move from prototypes to shipped products, then into real‑world programs.
+          </p>
+          <p>
+            Recently: experimenting with multi‑agent systems for talent scouting, and AI copilots for youth‑focused
+            organizations in East Africa.
+          </p>
         </div>
+        <div class="about__meta glass" data-gsap="reveal">
+          <h3 class="about__meta-title">Now</h3>
+          <ul class="about__meta-list">
+            <li>Exploring: AI agents for sports and civic tech</li>
+            <li>Open to: remote roles & collaborations</li>
+            <li>Community: youth mentorship, tournaments, Zumba</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
-    <!-- Portfolio Section: Works & Projects -->
-    <section id="portfolio" class="portfolio-section">
-        <h2 class="section-title">Digital Creations</h2>
-        <p class="section-subtitle">Projects Built with Nairobi's Spirit</p>
-
-        <div class="portfolio-grid">
-            <!-- Project 1: UIGEN -->
-            <div class="project-card glass">
-                <div class="project-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&w=500&q=80'); background-size: cover; background-position: center;">
-                    <div class="project-overlay">
-                        <span class="project-label">Featured</span>
-                        <a href="https://github.com/andrew1440/UIGEN" class="project-link" target="_blank">View Code →</a>
-                    </div>
-                </div>
-                <div class="project-content">
-                    <h3>UIGEN - AI Component Generator</h3>
-                    <p>AI-powered React component generator that transforms natural language descriptions into beautiful, production-ready components with live preview.</p>
-                    <div class="project-techs">
-                        <span>TypeScript</span>
-                        <span>React</span>
-                        <span>Claude AI</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 2: Naree -->
-            <div class="project-card glass">
-                <div class="project-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); background-image: url('https://images.unsplash.com/photo-1633356713697-82474bde3d5f?ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&w=500&q=80'); background-size: cover; background-position: center;">
-                    <div class="project-overlay">
-                        <span class="project-label">Premium | MIT</span>
-                        <a href="https://github.com/andrew1440/Naree" class="project-link" target="_blank">View Code →</a>
-                    </div>
-                </div>
-                <div class="project-content">
-                    <h3>🔍 Naree - AI Research Platform</h3>
-                    <p>State-of-the-art intelligent research and search platform combining multi-source real-time search with advanced synthesis capabilities.</p>
-                    <div class="project-techs">
-                        <span>TypeScript</span>
-                        <span>Advanced Search</span>
-                        <span>MIT License</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 3: Smart Customer Support Bot -->
-            <div class="project-card glass">
-                <div class="project-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); background-image: url('https://images.unsplash.com/photo-1531746790731-6c087fecd65b?ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&w=500&q=80'); background-size: cover; background-position: center;">
-                    <div class="project-overlay">
-                        <span class="project-label">Innovative</span>
-                        <a href="https://github.com/andrew1440/Smart-Customer-Support-Bot" class="project-link" target="_blank">View Code →</a>
-                    </div>
-                </div>
-                <div class="project-content">
-                    <h3>🤖 Smart Customer Support Bot</h3>
-                    <p>Intelligent chatbot system leveraging NLP and machine learning to provide automated, context-aware customer support solutions.</p>
-                    <div class="project-techs">
-                        <span>AI/ML</span>
-                        <span>NLP</span>
-                        <span>Automation</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 4: NewsHighlight2 -->
-            <div class="project-card glass">
-                <div class="project-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); background-image: url('https://images.unsplash.com/photo-1585398161052-671b3b0952df?ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&w=500&q=80'); background-size: cover; background-position: center;">
-                    <div class="project-overlay">
-                        <span class="project-label">Impact</span>
-                        <a href="https://github.com/andrew1440/NewsHighlight2" class="project-link" target="_blank">View Code →</a>
-                    </div>
-                </div>
-                <div class="project-content">
-                    <h3>NewsHighlight2 - News Aggregator</h3>
-                    <p>Web application displaying news from multiple global sources. Users explore diverse perspectives, stay informed on world events.</p>
-                    <div class="project-techs">
-                        <span>Python</span>
-                        <span>Web Scraping</span>
-                        <span>REST APIs</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 5: Joshskitenge -->
-            <div class="project-card glass">
-                <div class="project-image" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); background-image: url('https://images.unsplash.com/photo-1595428774223-ef52624120d2?ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&w=500&q=80'); background-size: cover; background-position: center;">
-                    <div class="project-overlay">
-                        <span class="project-label">Creative | MIT</span>
-                        <a href="https://github.com/andrew1440/Joshskitenge" class="project-link" target="_blank">View Code →</a>
-                    </div>
-                </div>
-                <div class="project-content">
-                    <h3> Joshskitenge - African Fabrics Store</h3>
-                    <p>E-commerce platform celebrating vibrant African cotton fabrics (Kitenge/Ankara designs). Connecting artisans with global audiences.</p>
-                    <div class="project-techs">
-                        <span>E-Commerce</span>
-                        <span>African Design</span>
-                        <span>MIT License</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 6: Civic Engagement Platform -->
-            <div class="project-card glass">
-                <div class="project-image" style="background: linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%); background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&w=500&q=80'); background-size: cover; background-position: center;">
-                    <div class="project-overlay">
-                        <span class="project-label">Kenya Impact</span>
-                        <a href="https://github.com/andrew1440/AI-enabled-Civic-Engagement-and-Governance-Transparency-Platform" class="project-link" target="_blank">View Code →</a>
-                    </div>
-                </div>
-                <div class="project-content">
-                    <h3>🇰🇪 AI Civic Engagement Platform</h3>
-                    <p>Comprehensive platform enabling AI-powered governance transparency and civic engagement for Kenya, empowering communities through data.</p>
-                    <div class="project-techs">
-                        <span>AI/ML</span>
-                        <span>Civic Tech</span>
-                        <span>Kenya</span>
-                    </div>
-                </div>
-            </div>
+    <!-- Compact stack “skills strip” -->
+    <section id="stack" class="section section--stack">
+      <div class="container">
+        <header class="section__header" data-gsap="reveal">
+          <p class="eyebrow">Stack</p>
+          <h2 class="section__title">What I ship with</h2>
+        </header>
+        <div class="stack__grid">
+          <div class="stack-group glass" data-gsap="reveal">
+            <h3 class="stack-group__title">Core</h3>
+            <ul class="stack-group__list">
+              <li>TypeScript · JavaScript</li>
+              <li>Python</li>
+              <li>SQL</li>
+            </ul>
+          </div>
+          <div class="stack-group glass" data-gsap="reveal">
+            <h3 class="stack-group__title">Frontend</h3>
+            <ul class="stack-group__list">
+              <li>React · Next.js</li>
+              <li>Tailwind / CSS</li>
+              <li>GSAP motion</li>
+            </ul>
+          </div>
+          <div class="stack-group glass" data-gsap="reveal">
+            <h3 class="stack-group__title">Backend & Cloud</h3>
+            <ul class="stack-group__list">
+              <li>Node · Express · Django</li>
+              <li>PostgreSQL · Firebase</li>
+              <li>AWS · Docker</li>
+            </ul>
+          </div>
+          <div class="stack-group glass" data-gsap="reveal">
+            <h3 class="stack-group__title">AI & Agents</h3>
+            <ul class="stack-group__list">
+              <li>LangChain · OpenAI</li>
+              <li>ML pipelines</li>
+              <li>Multi‑agent systems</li>
+            </ul>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Skills Section -->
-    <section class="skills-section">
-        <h2 class="section-title">Arsenal of Technologies</h2>
-        
-        <div class="skills-container">
-            <div class="skill-category glass">
-                <h3>Frontend Magic ✨</h3>
-                <div class="skill-bars">
-                    <div class="skill-item">
-                        <span>React</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 95%;"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <span>Vue.js</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <span>JavaScript</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 98%;"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <span>CSS/Design</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 92%;"></div></div>
-                    </div>
-                </div>
-            </div>
+    <!-- Projects in a clean “bento” list -->
+    <section id="projects" class="section section--projects">
+      <div class="container">
+        <header class="section__header" data-gsap="reveal">
+          <p class="eyebrow">Selected work</p>
+          <h2 class="section__title">Digital harvests</h2>
+          <p class="section__sub">
+            A few projects that show how I mix AI, product thinking, and grassroots impact.
+          </p>
+        </header>
 
-            <div class="skill-category glass">
-                <h3>Backend Power ⚙️</h3>
-                <div class="skill-bars">
-                    <div class="skill-item">
-                        <span>Node.js</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 94%;"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <span>Python</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 93%;"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <span>Databases</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 91%;"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <span>DevOps</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div></div>
-                    </div>
-                </div>
+        <div class="projects__list">
+          <article class="project glass" data-gsap="reveal"
+            onclick="window.open('https://github.com/andrew1440/Naree','_blank')">
+            <div class="project__head">
+              <span class="project__tag">AI research tool</span>
+              <span class="project__index">01</span>
             </div>
+            <h3 class="project__title">Naree AI</h3>
+            <p class="project__desc">
+              Multi‑source research assistant that blends web search, structured data, and AI synthesis for faster
+              decision‑making.
+            </p>
+            <p class="project__meta">
+              React · Next.js · LangChain · OpenAI
+            </p>
+            <p class="project__impact">
+              Used by youth leaders in pilot programs to compress research time from hours to minutes.
+            </p>
+            <div class="work__image-reveal">
+              <img src="https://images.unsplash.com/photo-1633356713697-82474bde3d5f?auto=format&fit=crop&w=800&q=80"
+                alt="Naree AI">
+            </div>
+          </article>
 
-            <div class="skill-category glass">
-                <h3>AI & Innovation 🤖</h3>
-                <div class="skill-bars">
-                    <div class="skill-item">
-                        <span>Machine Learning</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 88%;"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <span>Data Science</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 87%;"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <span>NLP</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 86%;"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <span>Problem Solving</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 99%;"></div></div>
-                    </div>
-                </div>
+          <article class="project glass" data-gsap="reveal"
+            onclick="window.open('https://github.com/andrew1440/Mtaani-Sports-Ai','_blank')">
+            <div class="project__head">
+              <span class="project__tag">Sports & youth</span>
+              <span class="project__index">02</span>
             </div>
+            <h3 class="project__title">Mtaani Sports</h3>
+            <p class="project__desc">
+              Multi‑agent AI layer for discovering and tracking talent in informal settlements, built around community
+              tournaments.
+            </p>
+            <p class="project__meta">
+              Python · LangChain · Agents · Vector DB
+            </p>
+            <p class="project__impact">
+              Prototyping with organizers in informal settlements to track talent and outcomes.
+            </p>
+            <div class="work__image-reveal">
+              <img src="https://images.unsplash.com/photo-1511886929837-354d827aae26?auto=format&fit=crop&w=800&q=80"
+                alt="Mtaani Sports">
+            </div>
+          </article>
+
+          <article class="project glass" data-gsap="reveal"
+            onclick="window.open('https://github.com/andrew1440/UI-Gen', '_blank')">
+            <div class="project__head">
+              <span class="project__tag">AI Development</span>
+              <span class="project__index">03</span>
+            </div>
+            <h3 class="project__title">UIGen</h3>
+            <p class="project__desc">
+              AI-powered React component generator with live preview. Generate beautiful, production-ready React
+              components by describing them in natural language.
+            </p>
+            <p class="project__meta">
+              Next.js · React · AI · Radix
+            </p>
+            <p class="project__impact">
+              Built to speed up my own UI workflow, now open‑sourced for the community.
+            </p>
+            <div class="work__image-reveal">
+              <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80"
+                alt="UIGen">
+            </div>
+          </article>
         </div>
+      </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <h2 class="section-title">Let's Connect</h2>
-        <p class="section-subtitle">Ready to build the future together? Reach out!</p>
+    <!-- Pulse (culture) re-integrated -->
+    <section id="pulse" class="section section--pulse">
+      <div class="container">
+        <header class="section__header" data-gsap="reveal">
+          <p class="eyebrow">Pulse</p>
+          <h2 class="section__title">Culture & <span class="accent-italic">Pulse</span></h2>
+          <p class="section__sub">
+            I build AI-powered products, youth programs, and sports ecosystems that reflect Nairobi’s rhythm – fast,
+            experimental, and deeply community-first.
+          </p>
+        </header>
 
-        <div class="contact-container">
-            <div class="contact-card glass">
-                <h3>Get In Touch</h3>
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <input type="text" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="Your Message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary glass">Send Message</button>
-                </form>
-            </div>
-
-            <div class="contact-info glass">
-                <h3>Connect With Me</h3>
-                <div class="social-links">
-                    <a href="#" class="social-link glass" title="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="#" class="social-link glass" title="Twitter">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="social-link glass" title="LinkedIn">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="#" class="social-link glass" title="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </div>
-                
-                <div class="info-items">
-                    <div class="info-item">
-                        <span class="info-icon">📍</span>
-                        <span>Nairobi, Kenya</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-icon">📧</span>
-                        <span>hello@andrew.dev</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-icon">💬</span>
-                        <span>Always open to chat</span>
-                    </div>
-                </div>
-            </div>
+        <div class="culture__marquee" data-gsap="reveal">
+          <span>
+            Silicon Savannah • AI for Youth • Sports & Community • Open Source • Civic Tech • Mentorship • Silicon
+            Savannah • AI for Youth • Sports & Community • Open Source • Civic Tech • Mentorship
+          </span>
         </div>
+
+        <div class="culture__grid">
+          <article class="culture__card glass" data-gsap="reveal">
+            <h3 class="card-title">AI for opportunity</h3>
+            <p>
+              I design tools that help young people discover scholarships, skills, and networks – turning abstract AI
+              into practical, everyday leverage.
+            </p>
+          </article>
+
+          <article class="culture__card glass" data-gsap="reveal">
+            <h3 class="card-title">Sports as infrastructure</h3>
+            <p>
+              From tournaments in Kibera to digital scouting tools, I treat sport as a system for talent discovery,
+              mentorship, and safe community spaces.
+            </p>
+          </article>
+
+          <article class="culture__card glass" data-gsap="reveal">
+            <h3 class="card-title">Open, local, honest</h3>
+            <p>
+              I document, share, and ship in public – from GitHub repos to field notes – so other Nairobi builders can
+              remix and scale what works.
+            </p>
+          </article>
+
+          <article class="culture__card glass" data-gsap="reveal">
+            <h3 class="card-title">Global, but rooted</h3>
+            <p>
+              I work with global teams, but my reference point is always Nairobi’s streets, matatus, and community halls
+              – technology should speak Sheng too.
+            </p>
+          </article>
+        </div>
+
+        <div class="culture__links" data-gsap="reveal">
+          <span class="culture__label">In practice</span>
+          <div class="culture__chips">
+            <a href="#projects" class="chip btn-magnetic">See Naree AI</a>
+            <a href="#projects" class="chip btn-magnetic">Explore Mtaani Sports</a>
+            <a href="https://linkedin.com/in/andrew-odongo" target="_blank" class="chip btn-magnetic">
+              Community and youth work
+            </a>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p>Crafted with <span class="heart">❤️</span> in Nairobi</p>
-            <p>©2024 Andrew Odongo — All Rights Reserved | Currently Building Dreams in Kenya</p>
+    <!-- Experience / Highlights -->
+    <section class="section section--highlights">
+      <div class="container">
+        <header class="section__header" data-gsap="reveal">
+          <p class="eyebrow">Highlights</p>
+          <h2 class="section__title">Where I’ve been building</h2>
+        </header>
+        <div class="highlights__grid">
+          <div class="highlight glass" data-gsap="reveal">
+            <h3>CFK Africa</h3>
+            <p>Built and supported digital tools around youth programs and community impact.</p>
+          </div>
+          <div class="highlight glass" data-gsap="reveal">
+            <h3>Pulse Kenya</h3>
+            <p>Worked on digital experiences, campaigns, and data‑driven content workflows.</p>
+          </div>
+          <div class="highlight glass" data-gsap="reveal">
+            <h3>Community work</h3>
+            <p>Organizing sports tournaments, mentorship sessions, and AI literacy moments in Nairobi.</p>
+          </div>
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <!-- Floating Particles -->
-    <div class="particles" id="particles"></div>
+    <!-- Contact -->
+    <section id="contact" class="section section--contact">
+      <div class="container contact__inner glass">
+        <div data-gsap="reveal">
+          <p class="eyebrow">Contact</p>
+          <h2 class="section__title">Let’s build what Nairobi needs next</h2>
+          <p class="section__sub">
+            Open to roles, collaborations, and experiments around AI, youth, and sports ecosystems.
+          </p>
+          <ul class="contact__list" data-gsap="reveal">
+            <li>AI‑native product design and prototyping.</li>
+            <li>Advising on youth & sports tech initiatives in East Africa.</li>
+            <li>Workshops or talks on AI, agents, and community impact.</li>
+          </ul>
+        </div>
+        <div class="contact__actions" data-gsap="reveal">
+          <a href="mailto:andrewodongo358@gmail.com" class="btn btn--primary btn-magnetic">Email me</a>
+          <div class="contact__links">
+            <a href="https://github.com/andrew1440" target="_blank" class="btn-magnetic">GitHub</a>
+            <a href="https://linkedin.com/in/andrew-odongo" target="_blank" class="btn-magnetic">LinkedIn</a>
+            <a href="#" target="_blank" class="btn-magnetic">Resume</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    <script src="app.js"></script>
+  <footer class="site-footer">
+    <div class="container footer__inner">
+      <span>Crafted in Nairobi — ©2024 Andrew Odongo</span>
+      <span class="footer__status">
+        <span class="dot"></span>
+        Available for new projects
+      </span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
+
 </html>
