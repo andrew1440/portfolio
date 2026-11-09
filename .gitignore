@@ -1,0 +1,4 @@
+/_source/
+node_modules/
+.env
+.env.*

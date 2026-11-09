@@ -3,379 +3,202 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>Andrew Odongo — Nairobi's Digital Explorer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,700&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-  <!-- GSAP & ScrollTrigger -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <title>Andrew Odongo — Nairobi's Digital Explorer</title>
+  <meta name="description" content="Andrew Odongo — full-stack engineer building AI-native products, sports ecosystems and civic tools in Nairobi. Ride a boda-boda through the portfolio." />
+  <meta name="theme-color" content="#272727" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+      }
+    }
+  </script>
 </head>
 
 <body>
-  <!-- Loading Screen -->
-  <div class="loading-screen" id="loadingScreen">
-    <div class="loader-anime">
-      <div class="orbit"></div>
-      <div class="center-dot"></div>
+  <canvas id="scene" aria-hidden="true"></canvas>
+
+  <!-- Loader -->
+  <div class="loader" id="loader">
+    <div class="loader__inner">
+      <p class="loader__eyebrow">Silicon Savannah</p>
+      <h1 class="loader__title">Andrew<br />Odongo</h1>
+      <div class="loader__bar"><span id="loaderFill"></span></div>
+      <p class="loader__pct"><span id="loaderPct">0</span>%</p>
+      <button class="loader__start" id="startBtn" disabled>Loading…</button>
+      <button class="loader__mute" id="startMuted" disabled>Start without sound</button>
+      <ul class="loader__hints">
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>
+          Turn your sound on
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18v12H3V4zm2 2v8h14V6H5zm3 12h8v2H8v-2z"/></svg>
+          Best on desktop
+        </li>
+      </ul>
     </div>
-    <p class="loading-text">Welcome to Nairobi</p>
   </div>
 
-  <!-- Custom Cursor -->
-  <div class="cursor" id="cursor">
-    <div class="cursor__dot"></div>
-    <div class="cursor__ring"></div>
-  </div>
-
-  <!-- Animated Background -->
-  <div class="animated-bg">
-    <div class="gradient-orb orb-1"></div>
-    <div class="gradient-orb orb-2"></div>
-    <div class="gradient-orb orb-3"></div>
-  </div>
-
-  <!-- Top nav -->
-  <header class="site-header site-header--glass glass">
-    <div class="container header__inner">
-      <div class="brand btn-magnetic">
-        <span class="brand__mark">AO</span>
-        <span class="brand__text">Nairobi's Digital Explorer</span>
-      </div>
-      <nav class="nav">
-        <a href="#intro" class="nav__link btn-magnetic">Intro</a>
-        <a href="#about" class="nav__link btn-magnetic">About</a>
-        <a href="#stack" class="nav__link btn-magnetic">Stack</a>
-        <a href="#projects" class="nav__link btn-magnetic">Projects</a>
-        <a href="#pulse" class="nav__link btn-magnetic">Pulse</a>
-        <a href="#contact" class="nav__link btn-magnetic">Contact</a>
-      </nav>
+  <!-- Chrome -->
+  <header class="hud">
+    <a class="hud__brand" href="#" data-p="0" aria-label="Back to start">
+      <span class="hud__mark">AO</span>
+      <span class="hud__name">Nairobi's Digital Explorer</span>
+    </a>
+    <div class="hud__actions">
+      <button class="hud__btn" id="soundBtn" aria-pressed="false" aria-label="Toggle sound">
+        <span class="bars"><i></i><i></i><i></i><i></i></span>
+      </button>
+      <button class="hud__btn hud__btn--menu" id="menuBtn" aria-expanded="false" aria-controls="menu" aria-label="Open menu">
+        <span class="burger"><i></i><i></i></span>
+      </button>
     </div>
   </header>
 
-  <main>
-    <!-- Intro / hero “scene” -->
-    <section id="intro" class="section section--intro">
-      <div class="container intro__grid">
-        <div class="intro__copy">
-          <p class="eyebrow" data-gsap="reveal">Silicon Savannah</p>
-          <h1 class="intro__title" data-gsap="reveal">
-            Andrew<br />
-            <span class="intro__title--alt">Odongo</span>
-          </h1>
-          <p class="intro__subtitle" data-gsap="reveal">
-            Full‑stack engineer building AI‑native products, sports ecosystems, and civic tools rooted in Nairobi’s
-            energy.
-          </p>
-          <div class="intro__actions" data-gsap="reveal">
-            <a href="#projects" class="btn btn--primary btn-magnetic">View selected work</a>
-            <a href="#pulse" class="btn btn--ghost btn-magnetic">See my pulse</a>
-          </div>
+  <nav class="menu" id="menu" aria-label="Main navigation" aria-hidden="true" inert>
+    <ul class="menu__list" id="menuList"></ul>
+    <div class="menu__foot">
+      <a href="mailto:andrewodongo358@gmail.com">andrewodongo358@gmail.com</a>
+      <div class="menu__social">
+        <a href="https://github.com/andrew1440" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/andrew-odongo" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="scroll-hint" id="scrollHint">
+    <span class="scroll-hint__mouse"><i></i></span>
+    <span>Scroll</span>
+  </div>
+
+  <div class="progress" aria-hidden="true">
+    <div class="progress__fill" id="progressFill"></div>
+    <div class="progress__stops" id="progressStops"></div>
+  </div>
+
+  <!-- Story panels, revealed along the ride -->
+  <main class="panels">
+    <section class="panel panel--intro" data-panel="intro">
+      <p class="eyebrow">Silicon Savannah · Nairobi, Kenya</p>
+      <h1 class="intro__title">Andrew<br /><span>Odongo</span></h1>
+      <p class="intro__sub">Full‑stack engineer building AI‑native products, sports ecosystems, and civic tools rooted in Nairobi’s energy.</p>
+      <ul class="intro__meta">
+        <li><span>Focus</span>AI products · Youth · Sports</li>
+        <li><span>Status</span><b class="live"></b>Open to new projects & roles</li>
+      </ul>
+    </section>
+
+    <section class="panel panel--card panel--left" data-panel="about">
+      <p class="eyebrow">About me</p>
+      <h2>Builder in Nairobi’s AI & sports lanes</h2>
+      <p>I’m a full‑stack engineer and community builder using AI to power youth opportunity, sports ecosystems, and civic tools across Nairobi. I move from prototypes to shipped products, then into real‑world programs.</p>
+      <p>Recently: experimenting with multi‑agent systems for talent scouting, and AI copilots for youth‑focused organizations in East Africa.</p>
+      <h3>Now</h3>
+      <ul class="ticks">
+        <li>Exploring AI agents for sports and civic tech</li>
+        <li>Open to remote roles & collaborations</li>
+        <li>Community: youth mentorship, tournaments, Zumba</li>
+      </ul>
+      <div class="chips">
+        <span>AI for Youth</span><span>Sports & Community</span><span>Open Source</span><span>Civic Tech</span><span>Mentorship</span>
+      </div>
+    </section>
+
+    <section class="panel panel--card panel--left" data-panel="skills">
+      <p class="eyebrow">Stack</p>
+      <h2>What I ship with</h2>
+      <div class="skills" id="skills">
+        <div class="skill" style="--c:#ff7a3d">
+          <h3>Core</h3>
+          <p>TypeScript · JavaScript · Python · SQL</p>
         </div>
-        <div class="intro__meta" data-gsap="reveal">
-          <div class="meta-card glass">
-            <span class="meta-label">Based in</span>
-            <span class="meta-value">Nairobi, Kenya</span>
-          </div>
-          <div class="meta-card glass">
-            <span class="meta-label">Focus</span>
-            <span class="meta-value">AI products · Youth · Sports</span>
-          </div>
-          <div class="meta-card glass">
-            <span class="meta-label">Available</span>
-            <span class="meta-status">
-              <span class="meta-dot"></span>
-              <span class="meta-value">New projects & roles</span>
-            </span>
-          </div>
+        <div class="skill" style="--c:#37c47b">
+          <h3>Frontend</h3>
+          <p>React · Next.js · Tailwind / CSS · GSAP motion</p>
+        </div>
+        <div class="skill" style="--c:#4fa8ff">
+          <h3>Backend & Cloud</h3>
+          <p>Node · Express · Django · PostgreSQL · Firebase · AWS · Docker</p>
+        </div>
+        <div class="skill" style="--c:#e04fd8">
+          <h3>AI & Agents</h3>
+          <p>LangChain · OpenAI · ML pipelines · Multi‑agent systems</p>
         </div>
       </div>
     </section>
 
-    <!-- About / Now -->
-    <section id="about" class="section section--about">
-      <div class="container about__grid">
-        <div class="about__copy" data-gsap="reveal">
-          <p class="eyebrow">About</p>
-          <h2 class="section__title">Builder in Nairobi’s AI & sports lanes</h2>
-          <p>
-            I’m a full‑stack engineer and community builder using AI to power youth opportunity, sports ecosystems,
-            and civic tools across Nairobi. I move from prototypes to shipped products, then into real‑world programs.
-          </p>
-          <p>
-            Recently: experimenting with multi‑agent systems for talent scouting, and AI copilots for youth‑focused
-            organizations in East Africa.
-          </p>
-        </div>
-        <div class="about__meta glass" data-gsap="reveal">
-          <h3 class="about__meta-title">Now</h3>
-          <ul class="about__meta-list">
-            <li>Exploring: AI agents for sports and civic tech</li>
-            <li>Open to: remote roles & collaborations</li>
-            <li>Community: youth mentorship, tournaments, Zumba</li>
-          </ul>
-        </div>
+    <section class="panel panel--card panel--left" data-panel="projects">
+      <p class="eyebrow">Selected work · Digital harvests</p>
+      <div class="projects" id="projects">
+        <article class="project">
+          <span class="project__index">01 / 03</span>
+          <p class="project__tag">AI research tool</p>
+          <h2>Naree AI</h2>
+          <p>Multi‑source research assistant that blends web search, structured data, and AI synthesis for faster decision‑making.</p>
+          <p class="project__impact">Used by youth leaders in pilot programs to compress research time from hours to minutes.</p>
+          <p class="project__stack">React · Next.js · LangChain · OpenAI</p>
+          <a class="btn" href="https://github.com/andrew1440/Naree" target="_blank" rel="noopener">View on GitHub ↗</a>
+        </article>
+        <article class="project">
+          <span class="project__index">02 / 03</span>
+          <p class="project__tag">Sports & youth</p>
+          <h2>Mtaani Sports</h2>
+          <p>Multi‑agent AI layer for discovering and tracking talent in informal settlements, built around community tournaments.</p>
+          <p class="project__impact">Prototyping with organizers in informal settlements to track talent and outcomes.</p>
+          <p class="project__stack">Python · LangChain · Agents · Vector DB</p>
+          <a class="btn" href="https://github.com/andrew1440/Mtaani-Sports-Ai" target="_blank" rel="noopener">View on GitHub ↗</a>
+        </article>
+        <article class="project">
+          <span class="project__index">03 / 03</span>
+          <p class="project__tag">AI development</p>
+          <h2>UIGen</h2>
+          <p>AI‑powered React component generator with live preview. Describe a component in natural language and get production‑ready React.</p>
+          <p class="project__impact">Built to speed up my own UI workflow, now open‑sourced for the community.</p>
+          <p class="project__stack">Next.js · React · AI · Radix</p>
+          <a class="btn" href="https://github.com/andrew1440/UI-Gen" target="_blank" rel="noopener">View on GitHub ↗</a>
+        </article>
       </div>
     </section>
 
-    <!-- Compact stack “skills strip” -->
-    <section id="stack" class="section section--stack">
-      <div class="container">
-        <header class="section__header" data-gsap="reveal">
-          <p class="eyebrow">Stack</p>
-          <h2 class="section__title">What I ship with</h2>
-        </header>
-        <div class="stack__grid">
-          <div class="stack-group glass" data-gsap="reveal">
-            <h3 class="stack-group__title">Core</h3>
-            <ul class="stack-group__list">
-              <li>TypeScript · JavaScript</li>
-              <li>Python</li>
-              <li>SQL</li>
-            </ul>
-          </div>
-          <div class="stack-group glass" data-gsap="reveal">
-            <h3 class="stack-group__title">Frontend</h3>
-            <ul class="stack-group__list">
-              <li>React · Next.js</li>
-              <li>Tailwind / CSS</li>
-              <li>GSAP motion</li>
-            </ul>
-          </div>
-          <div class="stack-group glass" data-gsap="reveal">
-            <h3 class="stack-group__title">Backend & Cloud</h3>
-            <ul class="stack-group__list">
-              <li>Node · Express · Django</li>
-              <li>PostgreSQL · Firebase</li>
-              <li>AWS · Docker</li>
-            </ul>
-          </div>
-          <div class="stack-group glass" data-gsap="reveal">
-            <h3 class="stack-group__title">AI & Agents</h3>
-            <ul class="stack-group__list">
-              <li>LangChain · OpenAI</li>
-              <li>ML pipelines</li>
-              <li>Multi‑agent systems</li>
-            </ul>
-          </div>
-        </div>
+    <section class="panel panel--card panel--contact" data-panel="contact">
+      <p class="eyebrow">Contact · You’ve arrived downtown</p>
+      <h2>Let’s build what Nairobi needs next</h2>
+      <p>Open to roles, collaborations, and experiments around AI, youth, and sports ecosystems.</p>
+      <ul class="ticks">
+        <li>AI‑native product design and prototyping</li>
+        <li>Advising on youth & sports tech initiatives in East Africa</li>
+        <li>Workshops or talks on AI, agents, and community impact</li>
+      </ul>
+      <div class="contact__actions">
+        <a class="btn btn--solid" href="mailto:andrewodongo358@gmail.com">Email me</a>
+        <a class="btn" href="https://github.com/andrew1440" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="btn" href="https://linkedin.com/in/andrew-odongo" target="_blank" rel="noopener">LinkedIn ↗</a>
       </div>
-    </section>
-
-    <!-- Projects in a clean “bento” list -->
-    <section id="projects" class="section section--projects">
-      <div class="container">
-        <header class="section__header" data-gsap="reveal">
-          <p class="eyebrow">Selected work</p>
-          <h2 class="section__title">Digital harvests</h2>
-          <p class="section__sub">
-            A few projects that show how I mix AI, product thinking, and grassroots impact.
-          </p>
-        </header>
-
-        <div class="projects__list">
-          <article class="project glass" data-gsap="reveal"
-            onclick="window.open('https://github.com/andrew1440/Naree','_blank')">
-            <div class="project__head">
-              <span class="project__tag">AI research tool</span>
-              <span class="project__index">01</span>
-            </div>
-            <h3 class="project__title">Naree AI</h3>
-            <p class="project__desc">
-              Multi‑source research assistant that blends web search, structured data, and AI synthesis for faster
-              decision‑making.
-            </p>
-            <p class="project__meta">
-              React · Next.js · LangChain · OpenAI
-            </p>
-            <p class="project__impact">
-              Used by youth leaders in pilot programs to compress research time from hours to minutes.
-            </p>
-            <div class="work__image-reveal">
-              <img src="https://images.unsplash.com/photo-1633356713697-82474bde3d5f?auto=format&fit=crop&w=800&q=80"
-                alt="Naree AI">
-            </div>
-          </article>
-
-          <article class="project glass" data-gsap="reveal"
-            onclick="window.open('https://github.com/andrew1440/Mtaani-Sports-Ai','_blank')">
-            <div class="project__head">
-              <span class="project__tag">Sports & youth</span>
-              <span class="project__index">02</span>
-            </div>
-            <h3 class="project__title">Mtaani Sports</h3>
-            <p class="project__desc">
-              Multi‑agent AI layer for discovering and tracking talent in informal settlements, built around community
-              tournaments.
-            </p>
-            <p class="project__meta">
-              Python · LangChain · Agents · Vector DB
-            </p>
-            <p class="project__impact">
-              Prototyping with organizers in informal settlements to track talent and outcomes.
-            </p>
-            <div class="work__image-reveal">
-              <img src="https://images.unsplash.com/photo-1511886929837-354d827aae26?auto=format&fit=crop&w=800&q=80"
-                alt="Mtaani Sports">
-            </div>
-          </article>
-
-          <article class="project glass" data-gsap="reveal"
-            onclick="window.open('https://github.com/andrew1440/UI-Gen', '_blank')">
-            <div class="project__head">
-              <span class="project__tag">AI Development</span>
-              <span class="project__index">03</span>
-            </div>
-            <h3 class="project__title">UIGen</h3>
-            <p class="project__desc">
-              AI-powered React component generator with live preview. Generate beautiful, production-ready React
-              components by describing them in natural language.
-            </p>
-            <p class="project__meta">
-              Next.js · React · AI · Radix
-            </p>
-            <p class="project__impact">
-              Built to speed up my own UI workflow, now open‑sourced for the community.
-            </p>
-            <div class="work__image-reveal">
-              <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80"
-                alt="UIGen">
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Pulse (culture) re-integrated -->
-    <section id="pulse" class="section section--pulse">
-      <div class="container">
-        <header class="section__header" data-gsap="reveal">
-          <p class="eyebrow">Pulse</p>
-          <h2 class="section__title">Culture & <span class="accent-italic">Pulse</span></h2>
-          <p class="section__sub">
-            I build AI-powered products, youth programs, and sports ecosystems that reflect Nairobi’s rhythm – fast,
-            experimental, and deeply community-first.
-          </p>
-        </header>
-
-        <div class="culture__marquee" data-gsap="reveal">
-          <span>
-            Silicon Savannah • AI for Youth • Sports & Community • Open Source • Civic Tech • Mentorship • Silicon
-            Savannah • AI for Youth • Sports & Community • Open Source • Civic Tech • Mentorship
-          </span>
-        </div>
-
-        <div class="culture__grid">
-          <article class="culture__card glass" data-gsap="reveal">
-            <h3 class="card-title">AI for opportunity</h3>
-            <p>
-              I design tools that help young people discover scholarships, skills, and networks – turning abstract AI
-              into practical, everyday leverage.
-            </p>
-          </article>
-
-          <article class="culture__card glass" data-gsap="reveal">
-            <h3 class="card-title">Sports as infrastructure</h3>
-            <p>
-              From tournaments in Kibera to digital scouting tools, I treat sport as a system for talent discovery,
-              mentorship, and safe community spaces.
-            </p>
-          </article>
-
-          <article class="culture__card glass" data-gsap="reveal">
-            <h3 class="card-title">Open, local, honest</h3>
-            <p>
-              I document, share, and ship in public – from GitHub repos to field notes – so other Nairobi builders can
-              remix and scale what works.
-            </p>
-          </article>
-
-          <article class="culture__card glass" data-gsap="reveal">
-            <h3 class="card-title">Global, but rooted</h3>
-            <p>
-              I work with global teams, but my reference point is always Nairobi’s streets, matatus, and community halls
-              – technology should speak Sheng too.
-            </p>
-          </article>
-        </div>
-
-        <div class="culture__links" data-gsap="reveal">
-          <span class="culture__label">In practice</span>
-          <div class="culture__chips">
-            <a href="#projects" class="chip btn-magnetic">See Naree AI</a>
-            <a href="#projects" class="chip btn-magnetic">Explore Mtaani Sports</a>
-            <a href="https://linkedin.com/in/andrew-odongo" target="_blank" class="chip btn-magnetic">
-              Community and youth work
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Experience / Highlights -->
-    <section class="section section--highlights">
-      <div class="container">
-        <header class="section__header" data-gsap="reveal">
-          <p class="eyebrow">Highlights</p>
-          <h2 class="section__title">Where I’ve been building</h2>
-        </header>
-        <div class="highlights__grid">
-          <div class="highlight glass" data-gsap="reveal">
-            <h3>CFK Africa</h3>
-            <p>Built and supported digital tools around youth programs and community impact.</p>
-          </div>
-          <div class="highlight glass" data-gsap="reveal">
-            <h3>Pulse Kenya</h3>
-            <p>Worked on digital experiences, campaigns, and data‑driven content workflows.</p>
-          </div>
-          <div class="highlight glass" data-gsap="reveal">
-            <h3>Community work</h3>
-            <p>Organizing sports tournaments, mentorship sessions, and AI literacy moments in Nairobi.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="section section--contact">
-      <div class="container contact__inner glass">
-        <div data-gsap="reveal">
-          <p class="eyebrow">Contact</p>
-          <h2 class="section__title">Let’s build what Nairobi needs next</h2>
-          <p class="section__sub">
-            Open to roles, collaborations, and experiments around AI, youth, and sports ecosystems.
-          </p>
-          <ul class="contact__list" data-gsap="reveal">
-            <li>AI‑native product design and prototyping.</li>
-            <li>Advising on youth & sports tech initiatives in East Africa.</li>
-            <li>Workshops or talks on AI, agents, and community impact.</li>
-          </ul>
-        </div>
-        <div class="contact__actions" data-gsap="reveal">
-          <a href="mailto:andrewodongo358@gmail.com" class="btn btn--primary btn-magnetic">Email me</a>
-          <div class="contact__links">
-            <a href="https://github.com/andrew1440" target="_blank" class="btn-magnetic">GitHub</a>
-            <a href="https://linkedin.com/in/andrew-odongo" target="_blank" class="btn-magnetic">LinkedIn</a>
-            <a href="#" target="_blank" class="btn-magnetic">Resume</a>
-          </div>
-        </div>
+      <div class="highlights">
+        <p class="eyebrow">Where I’ve been building</p>
+        <ul>
+          <li><b>CFK Africa</b>Digital tools around youth programs and community impact.</li>
+          <li><b>Pulse Kenya</b>Digital experiences, campaigns, and data‑driven content workflows.</li>
+          <li><b>Community</b>Sports tournaments, mentorship sessions, and AI literacy moments.</li>
+        </ul>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer__inner">
-      <span>Crafted in Nairobi — ©2024 Andrew Odongo</span>
-      <span class="footer__status">
-        <span class="dot"></span>
-        Available for new projects
-      </span>
-    </div>
-  </footer>
+  <footer class="credits">Crafted in Nairobi — ©<span id="year">2026</span> Andrew Odongo</footer>
 
-  <script src="app.js"></script>
+  <script type="module">
+    import('./js/main.js').catch(() => {
+      document.documentElement.classList.add('no-webgl');
+    });
+  </script>
 </body>
 
 </html>
